@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Christmas Village: countdown, wish list for Santa, random charm greeting cards and a snow globe. Thai / English / 中文 / Español.">
+<meta property="og:title" content="หมู่บ้านคริสต์มาส · Christmas Village">
+<meta property="og:description" content="🎄 Countdown · 💌 Greeting card · ❄️ Snow globe">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎄%3C/text%3E%3C/svg%3E">
+<title>หมู่บ้านคริสต์มาส</title>
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--sky1:#0b1430;--sky2:#1d3566;--pine:#16513a;--berry:#b3202f;--candle:#ffcf70;--snow:#f6f9ff;--wood:#4a2f1d;--ink:#3a1f1f;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--sky1)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;min-height:100vh;background:linear-gradient(#0b1430,#1d3566 65%,#2c4f85);color:var(--snow);font-family:'Mali','Sarabun','PingFang SC','Microsoft YaHei','Noto Sans SC','Noto Sans Thai',sans-serif;font-weight:500;line-height:1.5}
+#bg{position:fixed;inset:0;pointer-events:none;z-index:0}
+main{position:relative;z-index:1;max-width:460px;margin:0 auto;padding:18px 16px 40px}
+.scr[hidden]{display:none}
+h1{font-size:2rem;line-height:1.2;margin:.2em 0 0;text-align:center;color:var(--candle);text-shadow:0 0 18px rgba(255,207,112,.45)}
+h2{font-size:1.5rem;margin:.3em 0;color:var(--candle)}
+.sub{text-align:center;margin:.3em 0 1em;opacity:.85}
+svg.v{width:100%;height:auto;display:block;border-radius:20px}
+.win{animation:glow 3.2s ease-in-out infinite}.win:nth-of-type(2n){animation-delay:-1.1s}.win:nth-of-type(3n){animation-delay:-2s}
+@keyframes glow{50%{opacity:.55}}
+.menu{display:grid;gap:12px;margin-top:16px}
+.btn,.sign{font:inherit;font-weight:700;color:var(--snow);cursor:pointer;border:0;text-decoration:none}
+.sign{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:14px;border:2px solid var(--candle);box-shadow:0 4px 0 rgba(0,0,0,.35)}
+.sign b{font-size:1.1rem;display:block}.sign small{font-weight:500;opacity:.85}
+.sign i{font-style:normal;font-size:2rem}
+.s1{background:var(--berry)}.s2{background:var(--pine)}.s3{background:#244a8a}
+.btn{padding:11px 16px;border-radius:12px;background:var(--berry);border:2px solid var(--candle)}
+.btn.alt{background:#244a8a}.btn.ghost{background:transparent;border-color:rgba(255,255,255,.4)}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.row>*{flex:1}
+:focus-visible{outline:3px solid var(--candle);outline-offset:2px}
+.back{display:inline-block;color:var(--snow);text-decoration:none;padding:6px 0;opacity:.9}
+.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center;margin:12px 0}
+.cd div{background:rgba(255,255,255,.1);border:2px solid var(--candle);border-radius:14px;padding:10px 2px}
+.cd b{display:block;font-size:2rem;line-height:1.1;color:var(--candle)}
+.panel{background:rgba(11,20,48,.7);border:1px solid rgba(255,255,255,.25);border-radius:16px;padding:14px;margin-top:14px}
+input,textarea{width:100%;font:inherit;padding:10px 12px;border-radius:10px;border:2px solid rgba(255,255,255,.3);background:rgba(255,255,255,.95);color:var(--ink);margin:4px 0}
+label{font-size:.9rem;opacity:.9}
+ul{list-style:none;padding:0;margin:8px 0}
+li{display:flex;justify-content:space-between;align-items:center;gap:8px;background:rgba(255,255,255,.1);border-radius:10px;padding:6px 10px;margin:6px 0}
+li button{background:none;border:0;color:var(--snow);font-size:1.1rem;cursor:pointer}
+#reply{margin-top:10px;padding:12px;border-radius:12px;background:var(--snow);color:var(--ink);animation:pop .4s}
+@keyframes pop{from{transform:scale(.9);opacity:0}}
+#cv{width:100%;max-width:300px;aspect-ratio:9/16;display:block;margin:12px auto;border-radius:16px;border:3px solid var(--candle)}
+#gl{width:100%;max-width:360px;display:block;margin:6px auto;touch-action:none}
+#ov{position:fixed;inset:0;z-index:5;background:rgba(5,10,25,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:20px;text-align:center}
+#ov[hidden]{display:none}#ov img{max-height:62vh;max-width:100%;border-radius:12px}
+#t{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--snow);color:var(--ink);padding:10px 16px;border-radius:999px;z-index:6;max-width:90%;text-align:center;opacity:0;pointer-events:none;transition:opacity .25s}
+#t.on{opacity:1}
+svg.v{box-shadow:0 0 28px rgba(255,207,112,.22)}
+.langs{display:flex;gap:6px;justify-content:flex-end;margin-bottom:8px}.langs button{font:inherit;font-size:.85rem;color:var(--snow);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:4px 12px;cursor:pointer}.langs button[aria-pressed=true]{background:var(--candle);color:var(--ink);border-color:var(--candle)}
+.cd span{display:block;font-size:.85rem}#ovp{white-space:pre-line}
+.tw{animation:tw 2.6s ease-in-out infinite}.tw:nth-of-type(2n){animation-delay:-.9s}.tw:nth-of-type(3n){animation-delay:-1.7s}@keyframes tw{50%{opacity:.3}}
+.sm{transform-box:fill-box;transform-origin:center;animation:smk 4.5s linear infinite}@keyframes smk{from{transform:translate(0,0) scale(.6);opacity:.7}to{transform:translate(8px,-20px) scale(1.6);opacity:0}}
+.sl{animation:fly 28s linear infinite}@keyframes fly{from{transform:translate(-70px,70px)}to{transform:translate(410px,36px)}}
+@media (prefers-reduced-motion:reduce){.win,.tw,.sm{animation:none}.sl{animation:none;transform:translate(230px,64px)}#reply{animation:none}}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<main>
+<div class="langs" id="lang" role="group" aria-label="Language"><button data-l="th">ไทย</button><button data-l="en">EN</button><button data-l="zh">中文</button><button data-l="es">ES</button></div>
+<section class="scr" id="home">
+  <h1 data-i="title"></h1>
+  <p class="sub" data-i="welcome"></p>
+  <svg class="v" data-a="sva" viewBox="0 0 360 260" role="img" aria-label="หมู่บ้านคริสต์มาสยามค่ำคืน มีบ้านประดับไฟ ต้นคริสต์มาสต้นใหญ่ มนุษย์หิมะ และเลื่อนซานต้าบินผ่านดวงจันทร์">
+<defs>
+<linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#060c24"/><stop offset=".55" stop-color="#1d3566"/><stop offset="1" stop-color="#5b7fbd"/></linearGradient>
+<linearGradient id="sn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#c9dcf8"/></linearGradient>
+<linearGradient id="au" x1="0" x2="1"><stop offset="0" stop-color="#3ddc97" stop-opacity="0"/><stop offset=".5" stop-color="#3ddc97" stop-opacity=".3"/><stop offset="1" stop-color="#8a7bff" stop-opacity="0"/></linearGradient>
+<radialGradient id="mn"><stop offset="0" stop-color="#fffbe6"/><stop offset=".4" stop-color="#fff3c4" stop-opacity=".45"/><stop offset="1" stop-color="#fff3c4" stop-opacity="0"/></radialGradient>
+<radialGradient id="gw"><stop offset="0" stop-color="#ffd98a" stop-opacity=".85"/><stop offset="1" stop-color="#ffd98a" stop-opacity="0"/></radialGradient>
+<g id="pn"><rect x="-2" y="34" width="4" height="5" fill="#4a2f1d"/><path d="M-18 36L0 8L18 36Z" fill="#134536"/><path d="M-14 18L0 -10L14 18Z" fill="#175640"/><path d="M-10 0L0 -28L10 0Z" fill="#1b6648"/><path d="M0 -28L-4 -19Q0 -16 4 -19ZM0 -10L-6 2Q0 5 6 2ZM0 8L-9 20Q0 24 9 20Z" fill="#fff"/></g>
+<g id="wn"><circle cx="7" cy="7" r="15" fill="url(#gw)"/><rect width="14" height="14" rx="1.5" fill="#ffd98a"/><path d="M7 0V14M0 7H14" stroke="#7a3f22" stroke-width="1.3"/></g>
+<g id="lt"><path d="M0 0Q7.5 8 15 0Q22.5 8 30 0Q37.5 8 45 0Q52.5 8 60 0" fill="none" stroke="#222" stroke-width=".7"/><circle cx="7.5" cy="4" r="2" fill="#ff5a5f"/><circle cx="22.5" cy="4" r="2" fill="#ffd166"/><circle cx="37.5" cy="4" r="2" fill="#5ee59a"/><circle cx="52.5" cy="4" r="2" fill="#6ec1ff"/></g>
+<g id="rd"><ellipse rx="5" ry="2.6"/><circle cx="6" cy="-3" r="2"/><path d="M5 -4l-1-4M7 -4l1-4M-3 2l-1 5M3 2l1 5" stroke="#0a1230" stroke-width=".9" fill="none"/></g>
+<path id="sr" d="M0-8l2.4 5.8h6.2l-5 3.8 1.9 6-5.5-3.7-5.5 3.7 1.9-6-5-3.8h6.2Z"/>
+</defs>
+<rect width="360" height="260" fill="url(#sk)"/>
+<path d="M0 66Q90 14 180 52T360 34V92Q270 70 180 98T0 104Z" fill="url(#au)"/>
+<g fill="#fff"><circle class="tw" cx="30" cy="22" r="1.2"/><circle class="tw" cx="70" cy="48" r="1"/><circle class="tw" cx="105" cy="18" r="1.4"/><circle class="tw" cx="150" cy="40" r="1"/><circle class="tw" cx="190" cy="14" r="1.2"/><circle class="tw" cx="225" cy="36" r="1"/><circle class="tw" cx="250" cy="12" r="1"/><circle class="tw" cx="335" cy="22" r="1.2"/><circle class="tw" cx="20" cy="72" r="1"/><circle class="tw" cx="130" cy="72" r=".9"/><circle class="tw" cx="210" cy="68" r="1"/><circle class="tw" cx="346" cy="72" r="1"/></g>
+<circle cx="292" cy="50" r="46" fill="url(#mn)"/><circle cx="292" cy="50" r="17" fill="#fff8dc"/><circle cx="287" cy="46" r="3" fill="#efe3b0"/><circle cx="298" cy="56" r="2" fill="#efe3b0"/>
+<g class="sl" fill="#0a1230"><path d="M0 0h14q3 0 4-3l2 1q-1 6-7 7H1Z"/><circle cx="8" cy="-5" r="2.6"/><path d="M5.5-6.5q2.5-5 5 0Z"/><path d="M-10-2L2-2" stroke="#0a1230" stroke-width=".5"/><use href="#rd" x="-14" y="-1"/><use href="#rd" x="-28" y="-3"/><circle cx="-6" cy="-4" r="1.1" fill="#ff4d4d"/></g>
+<path d="M0 150L48 100L84 132L128 86L184 140L240 96L298 136L334 106L360 128V200H0Z" fill="#2c4d88"/>
+<path d="M48 100L38 114L48 109L57 115ZM128 86L116 106L128 100L140 108ZM240 96L229 111L240 106L251 113ZM334 106L325 118L334 114L343 119Z" fill="#e3ecfc"/>
+<g opacity=".85"><use href="#pn" transform="translate(28 152) scale(.5)"/><use href="#pn" transform="translate(50 156) scale(.42)"/><use href="#pn" transform="translate(100 160) scale(.5)"/><use href="#pn" transform="translate(150 158) scale(.4)"/><use href="#pn" transform="translate(206 158) scale(.45)"/><use href="#pn" transform="translate(252 160) scale(.5)"/><use href="#pn" transform="translate(344 154) scale(.55)"/></g>
+<path d="M0 170Q80 152 170 166T360 156V260H0Z" fill="url(#sn)"/>
+<g><rect x="22" y="150" width="60" height="44" fill="#9a3b2e"/><path d="M14 152L52 116L90 152Z" fill="#5c2a24"/><path d="M11 155L52 112L93 155Q87 150 81 154Q73 148 67 153Q59 147 52 152Q45 147 37 153Q30 148 23 154Q17 150 11 155Z" fill="#fff"/><rect x="66" y="118" width="9" height="20" fill="#6b3028"/><rect x="64" y="115" width="13" height="5" rx="2" fill="#fff"/><circle class="sm" cx="70" cy="110" r="3.5" fill="#dbe6fb"/><circle class="sm" style="animation-delay:-2.2s" cx="70" cy="110" r="3.5" fill="#dbe6fb"/><circle cx="52" cy="134" r="5" fill="#ffd98a"/><use class="win" href="#wn" x="28" y="162"/><use class="win" href="#wn" x="68" y="162"/><rect x="46" y="170" width="12" height="24" rx="6" fill="#4a2f1d"/><circle cx="52" cy="178" r="4.2" fill="none" stroke="#2c8a4f" stroke-width="2.4"/><circle cx="52" cy="182" r="1.4" fill="#d62839"/><use class="tw" href="#lt" x="22" y="154"/></g>
+<g><rect x="132" y="140" width="96" height="54" fill="#2c6b4c"/><path d="M122 144L180 98L238 144Z" fill="#1f4c37"/><path d="M119 147L180 94L241 147Q232 142 224 147Q214 140 206 146Q196 139 188 145Q180 139 172 145Q164 139 156 146Q148 140 140 146Q130 141 119 147Z" fill="#fff"/><rect x="204" y="106" width="11" height="22" fill="#3a2a22"/><rect x="202" y="103" width="15" height="5" rx="2" fill="#fff"/><circle class="sm" cx="209" cy="98" r="4" fill="#dbe6fb"/><circle class="sm" style="animation-delay:-2.2s" cx="209" cy="98" r="4" fill="#dbe6fb"/><circle cx="180" cy="124" r="14" fill="url(#gw)"/><circle cx="180" cy="124" r="6" fill="#ffd98a"/><use class="win" href="#wn" x="142" y="155"/><use class="win" href="#wn" x="204" y="155"/><path d="M170 194V170Q180 158 190 170V194Z" fill="#4a2f1d"/><circle cx="180" cy="176" r="5" fill="none" stroke="#2c8a4f" stroke-width="2.6"/><circle cx="180" cy="181" r="1.6" fill="#d62839"/><use class="tw" href="#lt" transform="translate(132 147) scale(1.6 1)"/><use class="tw" href="#sr" transform="translate(180 98) scale(1.1)" fill="#ffd166"/></g>
+<g><rect x="266" y="158" width="58" height="36" fill="#d98c3f"/><path d="M258 160L295 128L332 160Z" fill="#7a2a38"/><path d="M255 163L295 124L335 163Q328 158 321 162Q313 156 306 161Q299 155 292 160Q284 155 277 161Q270 156 263 162Q259 160 255 163Z" fill="#fff"/><rect x="308" y="132" width="9" height="16" fill="#5c2a30"/><rect x="306" y="129" width="13" height="5" rx="2" fill="#fff"/><circle class="sm" cx="312" cy="124" r="3.3" fill="#dbe6fb"/><circle cx="295" cy="146" r="4" fill="#ffd98a"/><use class="win" href="#wn" x="272" y="168"/><use class="win" href="#wn" x="304" y="168"/><rect x="289" y="174" width="12" height="20" rx="6" fill="#4a2f1d"/><circle cx="295" cy="181" r="3.8" fill="none" stroke="#2c8a4f" stroke-width="2.2"/><use class="tw" href="#lt" x="266" y="160"/></g>
+<path d="M0 206Q70 192 140 205T260 201T360 197V260H0Z" fill="#f2f7ff"/><path d="M0 228Q90 214 180 226T360 218V260H0Z" fill="#dfeaff"/>
+<use href="#pn" transform="translate(12 216) scale(.95)"/><use href="#pn" transform="translate(346 210) scale(1)"/>
+<g transform="translate(107 228)"><circle cy="-92" r="16" fill="url(#gw)"/><rect x="-4" width="8" height="8" fill="#5a3a22"/><path d="M0-84L-22-52H22Z" fill="#1d8a57"/><path d="M0-66L-28-26H28Z" fill="#1a7a4e"/><path d="M0-44L-34 0H34Z" fill="#176a44"/><path d="M-14-58Q0-50 14-58M-20-36Q0-26 20-36M-26-12Q0 0 26-12" fill="none" stroke="#fff" stroke-width="1.6" opacity=".9"/><circle class="tw" cx="-8" cy="-48" r="2.6" fill="#ff5a5f"/><circle class="tw" cx="9" cy="-38" r="2.6" fill="#ffd166"/><circle class="tw" cx="-14" cy="-22" r="2.6" fill="#6ec1ff"/><circle class="tw" cx="5" cy="-18" r="2.6" fill="#ff5a5f"/><circle class="tw" cx="20" cy="-8" r="2.6" fill="#ffd166"/><circle class="tw" cx="-6" cy="-7" r="2.6" fill="#6ec1ff"/><circle class="tw" cx="-22" cy="-4" r="2.6" fill="#ffd166"/><use class="tw" href="#sr" transform="translate(0 -88) scale(1.2)" fill="#ffd166"/><rect x="-32" y="-8" width="13" height="11" fill="#d62839"/><path d="M-25.5-8v11M-32-2.5h13" stroke="#ffd166" stroke-width="1.5"/><rect x="21" y="-6" width="11" height="9" fill="#3a78d6"/><path d="M26.5-6v9M21-1.5h11" stroke="#fff" stroke-width="1.4"/></g>
+<g transform="translate(252 216)"><circle cy="-8" r="10" fill="url(#sn)" stroke="#b9cdee" stroke-width=".6"/><circle cy="-24" r="7.5" fill="url(#sn)" stroke="#b9cdee" stroke-width=".6"/><circle cy="-37" r="5.5" fill="url(#sn)" stroke="#b9cdee" stroke-width=".6"/><path d="M-7-22L-15-28M7-22L15-30" stroke="#5a3a22" stroke-width="1" fill="none"/><circle cx="-2" cy="-38" r=".8" fill="#222"/><circle cx="2" cy="-38" r=".8" fill="#222"/><path d="M0-36.5L8-35L0-34Z" fill="#ff8a3d"/><rect x="-6.5" y="-32" width="13" height="3" fill="#c8232f"/><rect x="2" y="-32" width="3" height="8" fill="#c8232f"/><rect x="-5" y="-48" width="10" height="8" fill="#222"/><rect x="-7.5" y="-42" width="15" height="2.2" fill="#222"/><circle cy="-22" r=".9" fill="#222"/><circle cy="-17" r=".9" fill="#222"/></g>
+<g fill="#fff"><circle class="tw" cx="40" cy="214" r="1"/><circle class="tw" cx="160" cy="212" r="1.2"/><circle class="tw" cx="200" cy="222" r="1"/><circle class="tw" cx="300" cy="212" r="1.2"/><circle class="tw" cx="70" cy="236" r="1"/><circle class="tw" cx="220" cy="238" r="1.2"/><circle class="tw" cx="330" cy="234" r="1"/></g>
+</svg>
+  <nav class="menu" data-a="nav">
+    <a class="sign s1" href="#countdown"><i>⏰</i><span><b data-i="m1"></b><small data-i="m1s"></small></span></a>
+    <a class="sign s2" href="#card"><i>💌</i><span><b data-i="m2"></b><small data-i="m2s"></small></span></a>
+    <a class="sign s3" href="#globe"><i>❄️</i><span><b data-i="m3"></b><small data-i="m3s"></small></span></a>
+  </nav>
+  <div class="row"><button class="btn ghost" id="invH" data-i="invH"></button></div>
+</section>
+<section class="scr" id="countdown" hidden>
+  <a class="back" href="#home" data-i="back"></a>
+  <h2 data-i="cdt"></h2>
+  <div class="cd" role="timer" aria-live="off"><div><b id="d">0</b><span data-i="u1"></span></div><div><b id="h">0</b><span data-i="u2"></span></div><div><b id="m">0</b><span data-i="u3"></span></div><div><b id="s">0</b><span data-i="u4"></span></div></div>
+  <p id="cdmsg" class="sub"></p>
+  <div class="panel">
+    <h2 data-i="wt"></h2>
+    <label for="wi" data-i="wl"></label>
+    <div class="row"><input id="wi" maxlength="60" data-p="wph"><button class="btn" id="wa" style="flex:0 0 auto" data-i="add"></button></div>
+    <ul id="wl"></ul>
+    <button class="btn alt" id="ws" style="width:100%" data-i="send"></button>
+    <div id="reply" hidden></div>
+  </div>
+</section>
+<section class="scr" id="card" hidden>
+  <a class="back" href="#home" data-i="back"></a>
+  <h2 data-i="cardT"></h2>
+  <label for="to" data-i="to"></label><input id="to" maxlength="24" data-p="toph">
+  <label for="fr" data-i="from"></label><input id="fr" maxlength="24" data-p="fromph">
+  <label for="ms" data-i="msgl"></label><textarea id="ms" rows="3" maxlength="120" data-p="msgph"></textarea>
+  <div class="row"><button class="btn alt" id="rm" data-i="rm"></button><button class="btn" id="rc" data-i="rc"></button></div>
+  <canvas id="cv" width="1080" height="1920" role="img" data-a="ca"></canvas>
+  <div class="row"><button class="btn" id="sv" data-i="sv"></button></div>
+  <div class="row"><button class="btn ghost" id="cl" data-i="cl"></button><button class="btn ghost" id="invC" data-i="invC"></button></div>
+</section>
+<section class="scr" id="globe" hidden>
+  <a class="back" href="#home" data-i="back"></a>
+  <h2 data-i="gt"></h2>
+  <p class="sub" data-i="gh"></p>
+  <canvas id="gl" width="640" height="640" data-a="ga"></canvas>
+  <div class="row"><button class="btn" id="sh" data-i="sh"></button><button class="btn ghost" id="invG" data-i="invG"></button></div>
+</section>
+</main>
+<div id="ov" hidden><img alt=""><p id="ovp" data-i="ovp"></p><button class="btn" id="oc" data-i="close"></button></div>
+<div id="t" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s),R=a=>a[Math.random()*a.length|0],RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const PAGES=['home','countdown','card','globe'],LINK=location.href.split('#')[0].replace(/index\.html$/,'');
+let tt;function toast(m){const e=$('#t');e.textContent=m;e.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('on'),2800)}
+async function inv(text){const d={title:X('title'),text,url:LINK};try{if(navigator.share){await navigator.share(d);return}}catch(e){if(e.name==='AbortError')return}try{await navigator.clipboard.writeText(text+' '+LINK);toast(X('copied'))}catch(e){toast(LINK)}}
+['invH','invC','invG'].forEach(i=>$('#'+i).onclick=()=>inv(X('inv')));
+
+/* i18n */
+const LG=['th','en','zh','es'];let L='th';try{L=localStorage.getItem('lang')}catch(e){}
+if(!LG.includes(L)){const n=(navigator.language||'th').slice(0,2);L=LG.includes(n)?n:'en'}
+const I=()=>LG.indexOf(L),X=k=>T[k][I()];
+const T={
+title:['หมู่บ้านคริสต์มาส','Christmas Village','圣诞村','Aldea Navideña'],
+welcome:['ยินดีต้อนรับสู่หมู่บ้านของซานต้า','Welcome to Santa’s village','欢迎来到圣诞老人的村庄','Bienvenido a la aldea de Papá Noel'],
+sva:['หมู่บ้านคริสต์มาสยามค่ำคืน มีบ้านประดับไฟ ต้นคริสต์มาสต้นใหญ่ มนุษย์หิมะ และเลื่อนซานต้าบินผ่านดวงจันทร์','Christmas village at night with lit houses, a big decorated tree, a snowman and Santa’s sleigh flying past the moon','夜晚的圣诞村：亮灯的房子、装饰好的大圣诞树、雪人，以及飞过月亮的圣诞老人雪橇','Aldea navideña de noche con casas iluminadas, un gran árbol decorado, un muñeco de nieve y el trineo de Papá Noel cruzando la luna'],
+nav:['เมนูหลัก','Main menu','主菜单','Menú principal'],
+m1:['Countdown to Christmas','Countdown to Christmas','圣诞倒计时','Cuenta atrás para Navidad'],
+m1s:['นับถอยหลัง และขอพรกับซานต้า','Count the days and wish to Santa','数着日子，向圣诞老人许愿','Cuenta los días y pide un deseo'],
+m2:['Create Greeting Card','Create Greeting Card','制作贺卡','Crear tarjeta navideña'],
+m2s:['เขียนการ์ด สุ่มจี้ แล้วบันทึกรูป','Write a card, draw a charm, save it','写贺卡、抽挂坠、保存图片','Escribe, saca un dije y guarda'],
+m3:['Enter Snow Globe','Enter Snow Globe','进入雪花球','Entrar al globo de nieve'],
+m3s:['เขย่าลูกแก้วหิมะ','Shake the snow globe','摇一摇雪花球','Agita el globo de nieve'],
+invH:['📲 ชวนเพื่อนเล่นต่อ','📲 Invite friends','📲 邀请朋友一起玩','📲 Invitar amigos'],
+back:['← กลับหมู่บ้าน','← Back to village','← 返回村庄','← Volver a la aldea'],
+cdt:['⏰ อีกกี่วันถึงคริสต์มาส','⏰ Days until Christmas','⏰ 距离圣诞节还有','⏰ Días para Navidad'],
+u1:['วัน','days','天','días'],u2:['ชม.','hrs','时','h'],u3:['นาที','min','分','min'],u4:['วินาที','sec','秒','s'],
+until:['นับถึง 25 ธ.ค. {y}','Counting down to Dec 25, {y}','倒数至 {y} 年 12 月 25 日','Cuenta atrás hasta el 25 dic {y}'],
+today:['🎄 วันนี้คือวันคริสต์มาส สุขสันต์นะ!','🎄 It’s Christmas Day! Merry Christmas!','🎄 今天就是圣诞节，节日快乐！','🎄 ¡Hoy es Navidad! ¡Feliz Navidad!'],
+wt:['🎅 ขอพรกับซานต้า','🎅 Wish list for Santa','🎅 向圣诞老人许愿','🎅 Pide a Papá Noel'],
+wl:['ของขวัญที่อยากได้','Gift you want','想要的礼物','Regalo que quieres'],
+wph:['เช่น หูฟังตัวใหม่','e.g. new headphones','例如：新耳机','p. ej., unos auriculares nuevos'],
+add:['เพิ่ม','Add','添加','Añadir'],
+send:['✉️ ส่งจดหมายถึงซานต้า','✉️ Send a letter to Santa','✉️ 寄信给圣诞老人','✉️ Enviar carta a Papá Noel'],
+wEmpty:['พิมพ์ของขวัญที่อยากได้ก่อนนะ','Type a gift you want first','先写下想要的礼物吧','Escribe primero un regalo'],
+wMax:['ขอได้สูงสุด 8 อย่างนะ','Up to 8 wishes','最多许 8 个愿望','Máximo 8 deseos'],
+sEmpty:['เพิ่มของขวัญอย่างน้อย 1 อย่างก่อนนะ','Add at least one gift first','请先添加至少一个礼物','Añade al menos un regalo'],
+del:['ลบ','Remove','删除','Eliminar'],
+reply:['🎅 โฮ่ โฮ่ โฮ่! ซานต้าได้รับจดหมายแล้ว จดไว้ว่าอยากได้ “{w}”','🎅 Ho ho ho! Santa got your letter and noted “{w}”.','🎅 嚯嚯嚯！圣诞老人收到信了，记下了“{w}”。','🎅 ¡Jo, jo, jo! Papá Noel recibió tu carta y anotó «{w}».'],
+cardT:['💌 การ์ดคำอวยพร','💌 Greeting card','💌 圣诞贺卡','💌 Tarjeta navideña'],
+to:['ถึง','To','致','Para'],toph:['เพื่อนรัก','Dear friend','亲爱的朋友','Querido amigo'],
+from:['จาก','From','来自','De'],fromph:['ชื่อของคุณ','Your name','你的名字','Tu nombre'],
+msgl:['คำอวยพร','Message','祝福语','Mensaje'],msgph:['เขียนเอง หรือกดสุ่ม','Write your own or tap random','自己写，或点随机','Escribe el tuyo o toca aleatorio'],
+rm:['🎲 สุ่มคำอวยพรใหม่','🎲 New random message','🎲 重新随机祝福','🎲 Otro mensaje'],
+rc:['🎁 สุ่มจี้ใหม่','🎁 New random charm','🎁 重新抽挂坠','🎁 Otro dije'],
+ca:['ตัวอย่างการ์ดคริสต์มาส','Christmas card preview','圣诞贺卡预览','Vista previa de la tarjeta'],
+sv:['💾 บันทึกรูปการ์ด','💾 Save card image','💾 保存贺卡图片','💾 Guardar imagen'],
+cl:['🔗 คัดลอกลิงก์','🔗 Copy link','🔗 复制链接','🔗 Copiar enlace'],
+invC:['📲 ชวนเพื่อนสุ่มต่อ','📲 Invite friends','📲 邀请朋友','📲 Invitar amigos'],
+copied:['คัดลอกลิงก์แล้ว ส่งให้เพื่อนได้เลย','Link copied. Send it to your friends!','已复制链接，发给朋友吧','Enlace copiado. ¡Envíalo a tus amigos!'],
+saved:['บันทึกการ์ดแล้ว 🎄','Card saved 🎄','贺卡已保存 🎄','Tarjeta guardada 🎄'],
+got:['ได้จี้','You got','抽到了','Te tocó'],
+ovp:['กดค้างที่รูปเพื่อบันทึก\nถ้าบันทึกไม่ได้ ให้เปิดลิงก์นี้ใน Safari หรือ Chrome แล้วกดบันทึกอีกครั้ง','Press and hold the image to save.\nIf that fails, open this link in Safari or Chrome and try again.','长按图片即可保存。\n若无法保存，请在 Safari 或 Chrome 中打开此链接再试一次。','Mantén pulsada la imagen para guardarla.\nSi no funciona, abre este enlace en Safari o Chrome e inténtalo de nuevo.'],
+close:['ปิด','Close','关闭','Cerrar'],yc:['การ์ดของคุณ','Your card','你的贺卡','Tu tarjeta'],
+gt:['❄️ ลูกแก้วหิมะ','❄️ Snow globe','❄️ 雪花球','❄️ Globo de nieve'],
+gh:['แตะ ลากนิ้ว หรือกดเขย่า','Tap, drag, or press shake','点击、拖动或按“摇一摇”','Toca, arrastra o pulsa agitar'],
+sh:['🫨 เขย่า','🫨 Shake','🫨 摇一摇','🫨 Agitar'],invG:['📲 ชวนเพื่อน','📲 Invite friends','📲 邀请朋友','📲 Invitar amigos'],
+ga:['ลูกแก้วหิมะ','Snow globe','雪花球','Globo de nieve'],
+mc:['Merry Christmas','Merry Christmas','圣诞快乐','¡Feliz Navidad!'],
+dr:['🔗 มาสุ่มการ์ดของคุณ','🔗 Draw your own card','🔗 来抽你的专属贺卡','🔗 Saca tu propia tarjeta'],
+inv:['มาเดินเล่นในหมู่บ้านคริสต์มาส สุ่มจี้ ขอพรซานต้า แล้วดูว่าใครได้จี้หายากกว่ากัน 🎄','Come stroll through the Christmas village: draw a charm, wish to Santa, and see who gets the rarest one 🎄','来圣诞村逛逛吧：抽挂坠、向圣诞老人许愿，看谁抽到最稀有的！🎄','Ven a la aldea navideña: saca un dije, pídele a Papá Noel y mira quién saca el más raro 🎄']};
+const TA={
+ra:[['จี้ธรรมดา','จี้หายาก','จี้ตำนาน ✦'],['Common charm','Rare charm','Legendary charm ✦'],['普通挂坠','稀有挂坠','传说挂坠 ✦'],['Dije común','Dije raro','Dije legendario ✦']],
+sr:[['กวางเรนเดียร์ช่วยตรวจรายการให้แล้ว','ถ้าเป็นเด็กดี ลุ้นได้เลย','เจอกันที่ปล่องไฟคืนวันที่ 24 นะ','เอลฟ์กำลังห่อของขวัญให้อยู่'],['The reindeer are checking the list.','Be good and you might just get it.','See you at the chimney on the 24th.','The elves are already wrapping it.'],['驯鹿正在帮忙核对清单。','乖乖的话，说不定就能实现。','24号晚上烟囱见。','小精灵正在包装呢。'],['Los renos están revisando la lista.','Si te portas bien, quizá llegue.','Nos vemos en la chimenea el 24.','Los elfos ya lo están envolviendo.']],
+ms:[['สุขสันต์วันคริสต์มาส ขอให้อบอุ่นใจตลอดปี','ขอให้ปีหน้ามีเรื่องดีๆ เดินเข้ามาไม่หยุด','ขอให้หัวใจเบาเหมือนเกล็ดหิมะ และอบอุ่นเหมือนเทียนในคืนนี้','ขอบคุณที่อยู่ข้างกันมาทั้งปี สุขสันต์วันคริสต์มาสนะ','ขอให้มีรอยยิ้ม มีของขวัญ และมีคนที่รักอยู่ใกล้ๆ','ซานต้าฝากบอกว่า คุณทำได้ดีมากแล้วในปีนี้','ขอให้คืนนี้มีแสงไฟ มีเสียงหัวเราะ และมีขนมอร่อยๆ','ปีหน้าขอให้ทุกความตั้งใจเป็นจริงทีละข้อ','ขอให้เหนื่อยน้อยลง ยิ้มมากขึ้น และได้พักผ่อนเต็มที่','ส่งความอบอุ่นมาให้ถึงที่ ไม่ต้องรอปล่องไฟ','ขอให้โชคดีตามมาทุกก้าว เหมือนรอยเท้ากวางบนหิมะ','ของขวัญที่ดีที่สุดปีนี้คือการได้เจอคุณ'],
+['Merry Christmas! May your heart stay warm all year.','May good things keep walking through your door next year.','Light as a snowflake, warm as a candle tonight.','Thank you for being there all year. Merry Christmas!','Wishing you smiles, gifts, and loved ones close by.','Santa says: you did great this year.','May tonight bring twinkly lights, laughter, and tasty treats.','May every goal come true, one by one, next year.','Less tired, more smiling, and plenty of rest to you.','Sending warmth straight to you, no chimney needed.','Good luck at every step, like reindeer tracks in the snow.','The best gift this year was meeting you.'],
+['圣诞快乐！愿你一整年心里都暖暖的。','愿新的一年，好事一件接着一件来。','愿你的心像雪花一样轻盈，像今晚的烛光一样温暖。','谢谢你这一年的陪伴，圣诞快乐！','愿你有笑容、有礼物，爱的人都在身边。','圣诞老人说：你今年做得很棒！','愿今晚有灯光、有欢笑，还有好吃的点心。','愿明年的每个心愿，都一个一个实现。','愿你少一点疲惫，多一点笑容，好好休息。','把温暖直接送到你身边，不用等烟囱。','愿好运步步相随，像雪地上的驯鹿脚印。','今年最好的礼物，就是遇见你。'],
+['¡Feliz Navidad! Que tu corazón esté cálido todo el año.','Que el próximo año entren por tu puerta cosas buenas sin parar.','Ligero como un copo de nieve y cálido como una vela esta noche.','Gracias por estar a mi lado todo el año. ¡Feliz Navidad!','Te deseo sonrisas, regalos y tus seres queridos cerca.','Papá Noel dice: este año lo hiciste genial.','Que esta noche traiga luces, risas y dulces deliciosos.','Que el próximo año cada propósito se cumpla, uno a uno.','Menos cansancio, más sonrisas y mucho descanso para ti.','Te envío calidez directa, sin esperar a la chimenea.','Buena suerte en cada paso, como huellas de reno en la nieve.','El mejor regalo de este año fue conocerte.']]};
+function tr(){const i=I();document.documentElement.lang=L;document.title=T.title[i];
+document.querySelectorAll('[data-i]').forEach(e=>e.textContent=T[e.dataset.i][i]);
+document.querySelectorAll('[data-p]').forEach(e=>e.placeholder=T[e.dataset.p][i]);
+document.querySelectorAll('[data-a]').forEach(e=>e.setAttribute('aria-label',T[e.dataset.a][i]));
+document.querySelectorAll('#lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===L));
+$('#ov img').alt=T.yc[i];$('#reply').hidden=true;if(S.mi!=null)$('#ms').value=TA.ms[i][S.mi];cd();rw();if(!$('#card').hidden)draw()}
+document.querySelectorAll('#lang button').forEach(b=>b.onclick=()=>{L=b.dataset.l;try{localStorage.setItem('lang',L)}catch(e){}tr()});
+
+/* routing */
+function route(){let h=location.hash.slice(1);if(!PAGES.includes(h))h='home';document.querySelectorAll('.scr').forEach(e=>e.hidden=e.id!==h);scrollTo(0,0);h==='globe'?startG():stopG();if(h==='card'){if(!S.charm){S.charm=roll();pm()}draw()}}
+addEventListener('hashchange',route);
+
+/* background snow */
+const SP=[0,1,2].map(t=>{const S=48,c=document.createElement('canvas');c.width=c.height=S;const x=c.getContext('2d'),r=S/2-3;x.translate(S/2,S/2);x.strokeStyle=x.fillStyle='#fff';x.lineCap='round';x.shadowColor='rgba(170,210,255,.95)';x.shadowBlur=3;x.lineWidth=3.2;
+for(let i=0;i<6;i++){x.save();x.rotate(i*Math.PI/3);x.beginPath();x.moveTo(0,0);x.lineTo(0,-r);
+(t===1?[[.35,.3],[.65,.3]]:[[.58,.4]]).forEach(([p,l])=>{const y=-r*p,d=r*l;x.moveTo(0,y);x.lineTo(d*.64,y-d*.77);x.moveTo(0,y);x.lineTo(-d*.64,y-d*.77)});
+x.stroke();if(t===2){x.beginPath();x.arc(0,-r,2.6,0,7);x.fill()}x.restore()}
+x.beginPath();x.arc(0,0,3,0,7);x.fill();return c});
+function put(x,f){x.save();x.translate(f.x,f.y);x.rotate(f.a);if(f.k<0){x.beginPath();x.arc(0,0,f.w/2,0,7);x.fill()}else{x.globalAlpha=.92;x.drawImage(SP[f.k],-f.w/2,-f.w/2,f.w,f.w)}x.restore()}
+const bg=$('#bg'),bx=bg.getContext('2d');let F=[];
+function rs(){bg.width=innerWidth;bg.height=innerHeight;F=Array.from({length:Math.min(75,innerWidth/6|0)},()=>{const k=Math.random()<.3?-1:Math.random()*3|0,w=k<0?2+Math.random()*3:9+Math.random()*16;return{x:Math.random()*bg.width,y:Math.random()*bg.height,w,k,s:.25+w/40,dx:(Math.random()-.5)*.5,p:Math.random()*6,a:Math.random()*6,va:(Math.random()-.5)*.03}});if(RM)flk(0)}
+function flk(t){bx.clearRect(0,0,bg.width,bg.height);bx.fillStyle='rgba(255,255,255,.85)';const wd=Math.sin(t/6000)*1.1+Math.sin(t/2300+1)*.5;for(const f of F){if(!RM){f.y+=f.s*(1+Math.sin(t/4000+f.p)*.25);f.x+=wd*(.35+f.w/26)+f.dx+Math.sin(t/1200+f.p)*.35;f.a+=f.va+wd*.004;if(f.y>bg.height+20){f.y=-20;f.x=Math.random()*bg.width}if(f.x>bg.width+30)f.x=-30;else if(f.x<-30)f.x=bg.width+30}put(bx,f)}if(!RM)requestAnimationFrame(flk)}
+addEventListener('resize',rs);rs();if(!RM)requestAnimationFrame(flk);
+
+/* countdown */
+function cd(){const n=new Date();if(n.getMonth()===11&&n.getDate()===25){['d','h','m','s'].forEach(i=>$('#'+i).textContent=0);$('#cdmsg').textContent=X('today');return}
+let t=new Date(n.getFullYear(),11,25);if(n>t)t=new Date(n.getFullYear()+1,11,25);const d=t-n,p=(a,b)=>Math.floor(d/a)%b;
+$('#d').textContent=Math.floor(d/864e5);$('#h').textContent=p(36e5,24);$('#m').textContent=p(6e4,60);$('#s').textContent=p(1e3,60);$('#cdmsg').textContent=X('until').replace('{y}',t.getFullYear())}
+cd();setInterval(cd,1000);
+
+/* wishes */
+let W=[];try{W=JSON.parse(localStorage.getItem('wishes')||'[]')}catch(e){}
+function sv(){try{localStorage.setItem('wishes',JSON.stringify(W))}catch(e){}}
+function rw(){const u=$('#wl');u.innerHTML='';W.forEach((w,i)=>{const l=document.createElement('li'),s=document.createElement('span'),b=document.createElement('button');s.textContent='🎁 '+w;b.textContent='✕';b.setAttribute('aria-label',X('del')+' '+w);b.onclick=()=>{W.splice(i,1);sv();rw()};l.append(s,b);u.append(l)})}
+function addW(){const v=$('#wi').value.trim();if(!v){toast(X('wEmpty'));return}if(W.length>=8){toast(X('wMax'));return}W.push(v);$('#wi').value='';sv();rw()}
+$('#wa').onclick=addW;$('#wi').onkeydown=e=>{if(e.key==='Enter')addW()};
+$('#ws').onclick=()=>{if(!W.length){toast(X('sEmpty'));return}const r=$('#reply');r.hidden=false;r.textContent=X('reply').replace('{w}',R(W))+' '+R(TA.sr[I()]);r.style.animation='none';r.offsetHeight;r.style.animation=''};
+rw();
+
+/* charms */
+const CH=[
+['🔔',0,['กระดิ่งเงิน','เสียงกริ๊งเล็กๆ ที่พาข่าวดีมาถึงบ้าน'],['Silver bell','A tiny jingle that brings good news home'],['银铃铛','清脆的铃声，把好消息带回家'],['Campanilla de plata','Un tintineo que trae buenas noticias a casa']],
+['🎄',0,['ต้นสนน้อย','เขียวตลอดปี เหมือนกำลังใจที่ไม่เคยหมด'],['Little pine','Evergreen, like hope that never runs out'],['小松树','常青不凋，就像永不枯竭的信心'],['Pinito','Siempre verde, como la esperanza que no se acaba']],
+['🧦',0,['ถุงเท้าซานต้า','มีของเซอร์ไพรส์รออยู่ข้างใน'],['Santa’s stocking','A surprise is waiting inside'],['圣诞袜','里面藏着惊喜'],['Calcetín de Papá Noel','Dentro te espera una sorpresa']],
+['❄️',0,['เกล็ดหิมะ','ไม่มีใครเหมือนคุณ และไม่มีเกล็ดไหนเหมือนกัน'],['Snowflake','No one is like you, and no flake is alike'],['雪花','世上没有两个相同的你，也没有两片相同的雪花'],['Copo de nieve','Nadie es como tú, y ningún copo es igual']],
+['🍪',0,['จิงเจอร์เบรด','หวานอร่อยและอบอุ่นไปถึงใจ'],['Gingerbread','Sweet, tasty and warm to the heart'],['姜饼','香甜可口，暖到心里'],['Pan de jengibre','Dulce, rico y cálido para el corazón']],
+['🦌',1,['กวางเรนเดียร์','พาความฝันของคุณไปไกลกว่าเดิม'],['Reindeer','Carries your dreams farther than ever'],['驯鹿','带着你的梦想飞得更远'],['Reno','Lleva tus sueños más lejos que nunca']],
+['⭐',1,['ดาวยอดต้นสน','ส่องทางให้ปีหน้าเป็นปีที่ดี'],['Tree-top star','Lights the way to a great new year'],['树顶星','为新的一年照亮前路'],['Estrella de la copa','Ilumina el camino a un gran año nuevo']],
+['🕯️',1,['เทียนอุ่นใจ','แสงเล็กๆ ที่ทำให้ค่ำคืนหนาวไม่เหงา'],['Cozy candle','A small light that warms a cold night'],['暖心蜡烛','一点微光，让寒夜不再孤单'],['Vela acogedora','Una lucecita que abriga la noche fría']],
+['🎁',1,['กล่องของขวัญ','ความสุขกำลังเดินทางมาหาคุณ'],['Gift box','Happiness is on its way to you'],['礼物盒','幸福正朝你走来'],['Caja de regalo','La felicidad va de camino hacia ti']],
+['🎅',2,['ซานต้าครอส','ซานต้าเลือกคุณเป็นคนพิเศษปีนี้'],['Santa Claus','Santa picked you as someone special this year'],['圣诞老人','今年圣诞老人选中了特别的你'],['Papá Noel','Papá Noel te eligió como alguien especial este año']],
+['🌟',2,['ดาวนำโชค','ขอพรได้ 1 ข้อ แล้วเก็บไว้ในใจ'],['Lucky star','Make one wish and keep it in your heart'],['幸运星','许一个愿，把它藏在心里'],['Estrella de la suerte','Pide un deseo y guárdalo en el corazón']],
+['🛷',2,['เลื่อนเวทมนตร์','ปีหน้าจะพาคุณบินไปเจอสิ่งดีๆ'],['Magic sleigh','Next year will fly you to wonderful things'],['魔法雪橇','明年会载你飞向美好的事'],['Trineo mágico','El próximo año te llevará volando a cosas maravillosas']]];
+const RC=['#cfe3ff','#ffcf70','#ff8fc1'],S={charm:null,mi:null};
+function roll(){const p=Math.random(),r=p<.1?2:p<.4?1:0;return R(CH.filter(c=>c[1]===r))}
+function pm(){S.mi=Math.random()*12|0;$('#ms').value=TA.ms[I()][S.mi]}
+$('#rm').onclick=()=>{pm();draw()};
+$('#rc').onclick=()=>{let n=0;const iv=setInterval(()=>{const f=++n>=8;if(f)clearInterval(iv);S.charm=f?roll():R(CH);draw();if(f){toast(X('got')+' '+S.charm[0]+' '+S.charm[2+I()][0]+' ('+TA.ra[I()][S.charm[1]]+')')}},RM?1:80)};
+['to','fr','ms'].forEach(i=>$('#'+i).oninput=draw);
+$('#ms').addEventListener('input',()=>S.mi=null);
+const ST=Array.from({length:70},()=>[Math.random()*1080,Math.random()*1500,.3+Math.random()*.7,1.5+Math.random()*3]);
+function wrap(x,t,w){const seg=window.Intl&&Intl.Segmenter?[...new Intl.Segmenter(L==='zh'?'zh':L==='th'?'th':'en',{granularity:'word'}).segment(t)].map(s=>s.segment):[...t],Q=[];let l='';for(const s of seg){if(s==='\n'){Q.push(l);l='';continue}if(l&&x.measureText(l+s).width>w){Q.push(l.trim());l=s.trimStart()}else l+=s}if(l.trim())Q.push(l.trim());return Q}
+function tree(x,a,b,s){x.fillStyle='#16513a';for(let i=0;i<3;i++){const y=b-i*50*s,w=(100-i*25)*s;x.beginPath();x.moveTo(a-w/2,y);x.lineTo(a,y-80*s);x.lineTo(a+w/2,y);x.fill()}}
+function draw(){const cv=$('#cv'),x=cv.getContext('2d'),W=1080,H=1920,E='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif',F='Mali,"PingFang SC","Microsoft YaHei","Noto Sans SC",Sarabun,sans-serif';
+let g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,'#0b1430');g.addColorStop(.6,'#1d3566');g.addColorStop(1,'#2c4f85');x.fillStyle=g;x.fillRect(0,0,W,H);
+x.fillStyle='#fff';ST.forEach(s=>{x.globalAlpha=s[2];x.beginPath();x.arc(s[0],s[1],s[3],0,7);x.fill()});x.globalAlpha=1;
+x.fillStyle='#e8f0ff';x.beginPath();x.moveTo(0,1780);x.quadraticCurveTo(300,1690,620,1760);x.quadraticCurveTo(880,1820,1080,1730);x.lineTo(W,H);x.lineTo(0,H);x.fill();
+tree(x,110,1770,1.3);tree(x,960,1760,1.5);tree(x,860,1790,1);
+x.fillStyle='rgba(255,248,235,.97)';x.strokeStyle='#ffcf70';x.lineWidth=8;x.beginPath();x.roundRect?x.roundRect(90,610,900,860,60):x.rect(90,610,900,860);x.fill();x.stroke();
+x.lineWidth=6;x.beginPath();x.moveTo(540,0);x.lineTo(540,370);x.stroke();
+const c=S.charm||CH[0],i=I(),nm=c[2+i],col=RC[c[1]];g=x.createRadialGradient(510,450,10,540,480,130);g.addColorStop(0,'#fff');g.addColorStop(1,col);
+x.fillStyle=g;x.strokeStyle='#ffcf70';x.lineWidth=10;x.beginPath();x.arc(540,480,125,0,7);x.fill();x.stroke();
+x.textAlign='center';x.textBaseline='middle';x.font='130px '+E;x.fillStyle='#000';x.fillText(c[0],540,490);
+x.textBaseline='alphabetic';x.fillStyle='#b3202f';x.font='700 56px '+F;x.fillText(nm[0],540,740);
+x.fillStyle='#8a6a1f';x.font='700 34px '+F;x.fillText(TA.ra[i][c[1]],540,792);
+x.fillStyle='#5a4a4a';x.font='500 32px '+F;wrap(x,nm[1],760).slice(0,2).forEach((l,i)=>x.fillText(l,540,845+i*44));
+x.fillStyle='#3a1f1f';x.font='700 46px '+F;x.fillText(X('to')+' '+($('#to').value.trim()||X('toph')),540,985);
+x.font='500 44px '+F;wrap(x,$('#ms').value.trim()||TA.ms[i][0],760).slice(0,5).forEach((l,i)=>x.fillText(l,540,1070+i*66));
+const f=$('#fr').value.trim();if(f){x.textAlign='right';x.font='700 40px '+F;x.fillStyle='#b3202f';x.fillText(X('from')+' '+f,930,1420)}
+x.textAlign='center';x.fillStyle='#fff';x.font='700 64px '+F;x.fillText(X('mc'),540,1530);
+x.fillStyle='#fff';x.beginPath();x.roundRect?x.roundRect(190,1560,700,104,52):x.rect(190,1560,700,104);x.fill();
+x.fillStyle='#b3202f';x.font='700 40px '+F;x.fillText(X('dr'),540,1608);
+x.fillStyle='#3a1f1f';x.font='500 26px '+F;x.fillText(LINK.replace('https://',''),540,1645)}
+if(document.fonts)document.fonts.load('700 40px Mali').then(()=>{if(!$('#card').hidden)draw()});
+async function copyLink(){try{await navigator.clipboard.writeText(LINK);toast(X('copied'))}catch(e){toast(LINK)}}
+async function save(){const blob=await new Promise(r=>$('#cv').toBlob(r,'image/png'));
+try{const d=window.claude?await claude.use('downloads'):null;if(d){await d.save({filename:'christmas-card.png',data:blob});toast(X('saved'));return}}catch(e){if(e&&e.code==='declined')return}
+try{const u=URL.createObjectURL(blob),el=document.createElement('a');el.href=u;el.download='christmas-card.png';document.body.append(el);el.click();el.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);toast(X('saved'));return}catch(e){}
+ov()}
+function ov(){$('#ov img').src=$('#cv').toDataURL('image/png');$('#ov').hidden=false}
+$('#sv').onclick=save;$('#cl').onclick=copyLink;$('#oc').onclick=()=>$('#ov').hidden=true;
+
+/* snow globe */
+const gc=$('#gl'),gx=gc.getContext('2d');let FL=[],raf=0;
+function initG(){FL=Array.from({length:340},()=>{const a=Math.random()*6.28,d=Math.sqrt(Math.random())*205,k=Math.random()<.45?-1:Math.random()*3|0;return{x:320+Math.cos(a)*d,y:280+Math.sin(a)*d,vx:0,vy:0,k,w:k<0?3+Math.random()*4:9+Math.random()*8,a:Math.random()*6,va:(Math.random()-.5)*.03,fl:420+Math.random()*60}})}
+let SW=0;
+function stir(p,sx=0,sy=0){FL.forEach(f=>{f.vx+=(Math.random()-.5)*p+sx*.25;f.vy-=Math.random()*p*.8-sy*.1});SW+=(Math.random()<.5?-1:1)*p*.01}
+const WC=['#ff5a5f','#ffd166','#5ee59a','#6ec1ff'];
+function gt(ts){const x=gx,bl=k=>.55+.45*Math.sin(ts/380+k*1.9),CF='Mali,"PingFang SC","Microsoft YaHei",sans-serif';x.clearRect(0,0,640,640);
+x.fillStyle='#4a2f1d';x.beginPath();x.roundRect?x.roundRect(140,480,360,130,26):x.rect(140,480,360,130);x.fill();x.strokeStyle='#ffcf70';x.lineWidth=4;x.stroke();
+x.fillStyle='#ffcf70';x.font='700 30px '+CF;x.textAlign='center';x.fillText(X('mc'),320,560);
+x.save();x.beginPath();x.arc(320,280,228,0,7);x.clip();
+let g=x.createLinearGradient(0,50,0,510);g.addColorStop(0,'#101e4c');g.addColorStop(1,'#4a6fb0');x.fillStyle=g;x.fillRect(80,40,480,480);
+x.fillStyle='#fff';[[200,120,2],[260,88,1.6],[380,104,2],[470,170,1.6],[150,200,1.6],[330,150,1.4]].forEach(([a,b,r],k)=>{x.globalAlpha=bl(k);x.beginPath();x.arc(a,b,r,0,7);x.fill()});x.globalAlpha=1;
+x.fillStyle='#fff6d6';x.beginPath();x.arc(455,118,22,0,7);x.fill();
+tree(x,148,444,.8);tree(x,492,440,.9);
+x.fillStyle='#eef4ff';x.beginPath();x.ellipse(320,540,320,125,0,0,7);x.fill();
+/* house */
+x.fillStyle='#fff';x.beginPath();x.ellipse(240,436,78,11,0,0,7);x.fill();
+x.fillStyle='#b3472f';x.fillRect(192,368,96,68);x.fillStyle='#8f3524';for(let k=0;k<4;k++)x.fillRect(192,380+k*14,96,1.5);
+x.fillStyle='#6b3028';x.fillRect(264,318,14,36);x.fillStyle='#fff';x.fillRect(261,314,20,6);
+x.fillStyle='#5c2a24';x.beginPath();x.moveTo(176,374);x.lineTo(240,312);x.lineTo(304,374);x.fill();
+x.fillStyle='#fff';x.beginPath();x.moveTo(172,378);x.lineTo(240,306);x.lineTo(308,378);x.lineTo(300,372);x.lineTo(240,320);x.lineTo(180,372);x.fill();
+for(let a=182;a<=298;a+=13){x.beginPath();x.arc(a,376,6.5,0,7);x.fill()}
+for(let k=0;k<3;k++){const q=(ts/50+k*30)%90;x.fillStyle='rgba(225,235,255,'+(.6-q/150)+')';x.beginPath();x.arc(271+Math.sin(q/14+k)*5+q/9,312-q,4+q/14,0,7);x.fill()}
+for(const wx of [204,252]){const w=x.createRadialGradient(wx+12,394,2,wx+12,394,30);w.addColorStop(0,'rgba(255,217,138,.9)');w.addColorStop(1,'rgba(255,217,138,0)');x.fillStyle=w;x.fillRect(wx-18,364,60,60);
+x.fillStyle='#ffd98a';x.fillRect(wx,382,24,24);x.fillStyle='#7a3f22';x.fillRect(wx+11,382,2,24);x.fillRect(wx,393,24,2);x.fillStyle='#fff';x.fillRect(wx-2,406,28,4)}
+x.fillStyle='#ffd98a';x.beginPath();x.arc(240,346,7,0,7);x.fill();x.fillStyle='#7a3f22';x.fillRect(239,339,2,14);x.fillRect(233,345,14,2);
+x.fillStyle='#4a2f1d';x.beginPath();x.moveTo(231,436);x.lineTo(231,406);x.arc(240,406,9,Math.PI,0);x.lineTo(249,436);x.fill();
+x.strokeStyle='#2c8a4f';x.lineWidth=3;x.beginPath();x.arc(240,410,5,0,7);x.stroke();x.fillStyle='#d62839';x.beginPath();x.arc(240,415,2,0,7);x.fill();
+for(let k=0;k<9;k++){x.globalAlpha=bl(k);x.fillStyle=WC[k%4];x.beginPath();x.arc(186+k*13,376+Math.sin(k*1.2)*3.5+4,2.6,0,7);x.fill()}x.globalAlpha=1;
+/* christmas tree */
+x.fillStyle='#fff';x.beginPath();x.ellipse(384,438,52,9,0,0,7);x.fill();x.fillStyle='#5a3a22';x.fillRect(378,426,12,12);
+[[314,358,24,'#1d8a57'],[332,392,33,'#1a7a4e'],[356,430,43,'#176a44']].forEach(([a,b,w,c])=>{x.fillStyle=c;x.beginPath();x.moveTo(384,a);x.lineTo(384-w,b);x.lineTo(384+w,b);x.fill()});
+x.strokeStyle='rgba(255,255,255,.9)';x.lineWidth=2;[[350,20],[384,30],[420,40]].forEach(([y,w])=>{x.beginPath();x.moveTo(384-w,y);x.quadraticCurveTo(384,y+10,384+w,y);x.stroke()});
+[[372,340],[398,372],[372,376],[412,410],[354,412],[386,414],[366,396]].forEach(([a,b],k)=>{x.globalAlpha=bl(k+2);x.fillStyle=WC[k%4];x.beginPath();x.arc(a,b,3.8,0,7);x.fill()});x.globalAlpha=1;
+const sg=x.createRadialGradient(384,310,1,384,310,24);sg.addColorStop(0,'rgba(255,230,140,.9)');sg.addColorStop(1,'rgba(255,230,140,0)');x.fillStyle=sg;x.fillRect(358,284,52,52);
+x.fillStyle='#ffd166';x.beginPath();for(let k=0;k<10;k++){const a=-Math.PI/2+k*Math.PI/5,r=k%2?4.5:10;x[k?'lineTo':'moveTo'](384+Math.cos(a)*r,310+Math.sin(a)*r)}x.fill();
+x.fillStyle='#d62839';x.fillRect(338,424,16,14);x.fillStyle='#ffd166';x.fillRect(345,424,2,14);x.fillRect(338,430,16,2);
+x.fillStyle='#3a78d6';x.fillRect(422,426,14,12);x.fillStyle='#fff';x.fillRect(428,426,2,12);
+/* snow with changing wind and swirl */
+const wd=Math.sin(ts/2600)*.03;x.fillStyle='#fff';
+for(const f of FL){const dx=f.x-320,dy=f.y-280,d=Math.hypot(dx,dy)||1,air=f.y<f.fl-3;
+f.vy+=.05;if(air){f.vx+=wd+Math.sin(ts/1700+f.y/70)*.012;if(Math.abs(SW)>.0004){f.vx+=-dy/d*SW*d/200;f.vy+=dx/d*SW*d/200}}
+f.vx*=.985;f.vy*=.985;if(f.vy>1.4)f.vy=1.4;f.x+=f.vx+(air?Math.sin(f.y/30+f.x)*.15:0);f.y+=f.vy;
+if(f.y>f.fl){f.y=f.fl;f.vy=0;f.vx*=.6}const ex=f.x-320,ey=f.y-280,e=Math.hypot(ex,ey);if(e>220){f.x=320+ex/e*220;f.y=280+ey/e*220;f.vx*=-.3;f.vy=0}
+f.a+=f.va;put(x,f)}
+SW*=.985;x.restore();
+x.strokeStyle='rgba(255,255,255,.55)';x.lineWidth=6;x.beginPath();x.arc(320,280,228,0,7);x.stroke();
+x.strokeStyle='rgba(255,255,255,.7)';x.lineWidth=10;x.lineCap='round';x.beginPath();x.arc(320,280,196,3.6,4.3);x.stroke();
+raf=requestAnimationFrame(gt)}
+function startG(){if(!FL.length)initG();cancelAnimationFrame(raf);gt(performance.now())}
+function stopG(){cancelAnimationFrame(raf)}
+gc.addEventListener('pointerdown',()=>stir(5));
+gc.addEventListener('pointermove',e=>{if(e.buttons||e.pointerType==='touch')stir(Math.min(3,(Math.abs(e.movementX)+Math.abs(e.movementY))/12+.3),e.movementX||0,e.movementY||0)});
+$('#sh').onclick=()=>{let n=0;const iv=setInterval(()=>{stir(9);if(++n>6)clearInterval(iv)},120)};
+tr();route();
+</script>
+</body>
+</html>
